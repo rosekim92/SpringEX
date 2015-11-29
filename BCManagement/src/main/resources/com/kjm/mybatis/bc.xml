@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjm.mybatis.bc">
+
+	<resultMap type="com.kjm.myapp.model.Book" id="bcManagement">
+		<id property="bc_num" column="bc_num"/>
+		<result property="company" column="company"/>
+		<result property="name" column="name"/>
+		<result property="rank" column="rank"/>
+		<result property="phone" column="phone"/>
+		<result property="email" column="email"/>
+		<result property="cp_addr" column="cp_addr"/>
+	</resultMap>
+
+    <select id="findAllList" resultMap="bcManagement">
+        SELECT * FROM BCTABLE
+        ORDER BY BC_NUM
+    </select>
+    
+    <select id="getBctableByNum" resultMap="bcManagement" parameterType="int">
+        SELECT * FROM BCTABLE
+        WHERE BC_NUM=#{bc_num}
+    </select>
+    
+    <insert id="insertBC" parameterType="com.kjm.myapp.model.Book">
+    	INSERT 
+    	INTO BCTABLE(
+    				bc_num,
+    				company,
+    				name,
+    				rank,
+    				phone,
+    				email,
+    				cp_addr) 
+    	VALUES(
+    		bctable_seq.nextval,
+    		#{company},
+    		#{name},
+    		#{rank},
+    		#{phone},
+    		#{email},
+    		#{cp_addr}
+    	)
+    </insert>
+    
+    <delete id="deleteByNum" parameterType="int">
+    	DELETE FROM
+    	BCTABLE
+    	WHERE BC_NUM=#{bc_num}
+    </delete>
+    
+    <update id="bcUpdateByNum" parameterType="hashmap">
+    	UPDATE BCTABLE
+    	SET	COMPANY=#{company}, NAME=#{name}, RANK=#{rank},
+    		PHONE=#{phone}, EMAIL=#{email}, CP_ADDR=#{cp_addr}
+    	WHERE BC_NUM=#{bc_num}
+    </update>
+</mapper>

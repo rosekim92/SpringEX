@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+input{
+	height: 35px;
+    margin-top: 10px;
+}
+
+#name, #rank{
+	width: 120px;
+}
+
+#email{
+	width: 220px;
+}
+
+#cp_addr{
+	width: 455px;
+}
+
+.bc_but{
+	width: 50%;
+    float: left;
+    cursor: pointer;
+}
+
+.bcDetailInput{
+	border: none;
+    cursor: pointer;
+}
